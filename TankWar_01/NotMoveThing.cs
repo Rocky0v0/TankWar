@@ -10,5 +10,10 @@ namespace TankWar_01
     class NotMoveThing:GameObject
     {
         public Image Img { get; set; }
+
+        protected override Image GetImage()
+        {
+            return Img;
+        }
     }
 }

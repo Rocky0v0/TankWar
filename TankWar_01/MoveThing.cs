@@ -24,7 +24,33 @@ namespace TankWar_01
         public Bitmap BitmapDown { get; set; }
         public Bitmap BitmapRight { get; set; }
         public Bitmap BitmapLeft { get; set; }
-        
-        
+
+        protected override Image GetImage()
+        {
+            Bitmap bitmap = null;
+
+            switch(Dir)
+            {
+                case Direction.Up:
+                    bitmap = BitmapUp;
+                    break;
+                case Direction.Down:
+                    bitmap = BitmapDown;
+                    break;
+                case Direction.Right:
+                    bitmap = BitmapRight;
+                    break;
+                case Direction.Left:
+                    bitmap = BitmapLeft;
+                    break;
+
+            }
+            bitmap.MakeTransparent(Color.Black);
+            return bitmap;
+
+
+           
+            
+        }
     }
 }
