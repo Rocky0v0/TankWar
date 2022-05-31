@@ -8,14 +8,14 @@ namespace TankWar_01
 {
     internal class GameFramework
     {
-        public void Start()
+        public static void Start()
         {
 
         }
 
-        public void Update()
+        public static void Update()
         {
-
+ 
         }
     }
 }
