@@ -13,12 +13,13 @@ namespace TankWar_01
 
         public static void Start()
         {
-
+            GameObjectManager.CreateMap();
+            
         }
 
         public static void Update()
         {
- 
+            GameObjectManager.DrawMap();
         }
     }
 }

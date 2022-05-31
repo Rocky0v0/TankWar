@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TankWar_01
 {
     abstract class GameObject
@@ -17,14 +18,10 @@ namespace TankWar_01
 
         public void DrawSelf()
         {
-            //每个子类元素需要绘制自身方法将自身绘制在画布上
-
-            //此方法需要先得到画布,传递图片参数，坐标参数
-
-            //1.得到画布
+      
             Graphics g = GameFramework.g;
 
-            //Graphics类中的绘制方法
+            
             g.DrawImage(GetImage(),X,Y);
         }
     }
