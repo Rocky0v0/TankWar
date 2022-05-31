@@ -14,13 +14,18 @@ namespace TankWar_01
     public partial class Form1 : Form
     {
         private Thread t;
-        
+        private Graphics g;
+
+
         public Form1()
         {
             
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            g = this.CreateGraphics();
+            GameFramework.g = g;
 
             t = new Thread(new ThreadStart(GameMainThread));
             t.Start();
@@ -35,6 +40,8 @@ namespace TankWar_01
 
             while (true)
             {
+                GameFramework.g.Clear(Color.Black);
+
                 GameFramework.Update();
 
                 Thread.Sleep(sleepTime);
