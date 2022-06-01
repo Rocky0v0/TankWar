@@ -38,6 +38,7 @@ namespace TankWar_01
             for(int i = yPosition; i < yPosition + count * 30; i += 15)
             {
                 //使用NotMoveTing中创建的构造函数
+                //图片赋值时显示为null解决方法：在resources.resx中将访问修饰符改为public
                 NotMoveThing wall1 = new NotMoveThing(xPosition, i, Resources.wall);
                 NotMoveThing wall2 = new NotMoveThing(xPosition+15, i, Resources.wall);
 
