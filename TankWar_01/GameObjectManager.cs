@@ -25,6 +25,7 @@ namespace TankWar_01
             }
         }
         //4.添加创建地图方法，并在此方法中调用创建墙方法
+        //6.2创建地图只需创建一次，所以在gameframework中的start方法中调用
         public static void CreateMap()
         {
             CreateWall(1, 1, 5);//,WallList);
@@ -34,8 +35,8 @@ namespace TankWar_01
 
         //创建元素具体流程为->创建元素(CreateWall)->将元素放入地图(CreateMap)->绘制地图(DrawMap)
 
-        //2.创建墙元素方法 创建墙元素需要构造方法(不可移动元素的构造方法在NotMovething类中创建)
-        //临时创建墙元素：此方法为工具方法，声明为private因为只需要在上方CreateMap中调用
+        //2.创建墙元素需要构造方法(不可移动元素的构造方法在NotMovething类中创建)
+        //2.1临时创建墙元素方法：此方法为工具方法，声明为private因为只需要在上方CreateMap中调用
         private static void CreateWall(int x,int y,int count) //,List<NotMoveThing> wallList)
         {
 

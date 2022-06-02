@@ -14,7 +14,8 @@ namespace TankWar_01
     public partial class Form1 : Form
     {
         private Thread t;
-        private Graphics g;
+        private static Graphics windowG;
+        private static Bitmap tempBmp;
 
 
         public Form1()
@@ -24,13 +25,21 @@ namespace TankWar_01
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            g = this.CreateGraphics();
-            GameFramework.g = g;
+            windowG = this.CreateGraphics();
+            //GameFramework.g = g;
+
+            //解决元素闪烁问题(新建黑色图片并将元素先绘制在图片上再将该图片绘制在画布g上，代替原有的直接将元素绘制在画布g上)
+            //1.生成临时图片
+            tempBmp = new Bitmap(450, 450);
+            //静态方法(工具方法)
+            //2.根据临时图片生成临时画布bmpG
+            Graphics bmpG = Graphics.FromImage(tempBmp);
+            //3.在临时画布bmpG上绘制元素就会绘制到tempBmp图片上
+            GameFramework.g = bmpG;
 
             t = new Thread(new ThreadStart(GameMainThread));
             t.Start();
-
-        }
+        } 
 
         private static void GameMainThread()
         {
@@ -40,9 +49,13 @@ namespace TankWar_01
 
             while (true)
             {
+               //在临时画布上作画
                 GameFramework.g.Clear(Color.Black);
 
                 GameFramework.Update();
+
+                //4.将临时画布上的元素绘制在窗体画布上
+                windowG.DrawImage(tempBmp,0,0);
 
                 Thread.Sleep(sleepTime);
             }
