@@ -16,7 +16,8 @@ namespace TankWar_01
         private static List<NotMoveThing> wallList = new List<NotMoveThing>();
         //创建新的List集合用于存放钢墙
         private static List<NotMoveThing> steelList = new List<NotMoveThing>();
-
+        //构造boss，由于只有一个元素，所以不需要创建list保存
+        private static NotMoveThing Boss;
 
         //5.在创建完包含了墙元素的地图后，将该地图最终绘制出来
         public static void DrawMap()
@@ -34,6 +35,8 @@ namespace TankWar_01
                 nm.DrawSelf();
                 
             }
+            //直接调用boss元素的drawself方法
+            Boss.DrawSelf();
         }
         //4.添加创建地图方法，并在此方法中调用创建墙方法
         //6.2创建地图只需创建一次，所以在gameframework中的start方法中调用
@@ -78,6 +81,9 @@ namespace TankWar_01
             CreateWall(0, 7, 1, Resources.steel, steelList);
             CreateWall(14, 7, 1, Resources.steel, steelList);
 
+            //Boss元素直接使用CreateBoss创建
+            CreateBoss(7, 14, Resources.Boss);
+
         }
 
         //创建元素具体流程为->创建元素(CreateWall)->将元素放入地图(CreateMap)->绘制地图(DrawMap)
@@ -101,6 +107,16 @@ namespace TankWar_01
                 Listname.Add(wall2); //放入创建的对应的list集合
             }
             
+        }
+
+        //创建新方法绘制boss
+        private static void CreateBoss(int x,int y, Image img)
+        {
+            int xPosition = x * 30;
+            int yPosition = y * 30;
+
+            Boss = new NotMoveThing(xPosition, yPosition,img);
+
         }
 
     }
