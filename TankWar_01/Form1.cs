@@ -25,6 +25,7 @@ namespace TankWar_01
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            //得到窗体画布，但是先不绘制元素，变为使用下方的临时图片创建的临时画布绘制元素，再放置在窗体画布中
             windowG = this.CreateGraphics();
             //GameFramework.g = g;
 
@@ -35,6 +36,7 @@ namespace TankWar_01
             //2.根据临时图片生成临时画布bmpG
             Graphics bmpG = Graphics.FromImage(tempBmp);
             //3.在临时画布bmpG上绘制元素就会绘制到tempBmp图片上
+            //此时GameFramework中的g改为了对应的画布改为了临时画布
             GameFramework.g = bmpG;
 
             t = new Thread(new ThreadStart(GameMainThread));
@@ -49,12 +51,13 @@ namespace TankWar_01
 
             while (true)
             {
+               
                //在临时画布上作画
                 GameFramework.g.Clear(Color.Black);
 
                 GameFramework.Update();
 
-                //4.将临时画布上的元素绘制在窗体画布上
+                //4.最终将临时画布上的元素绘制在窗体画布上
                 windowG.DrawImage(tempBmp,0,0);
 
                 Thread.Sleep(sleepTime);
