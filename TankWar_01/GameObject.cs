@@ -25,5 +25,11 @@ namespace TankWar_01
             
             g.DrawImage(GetImage(),X,Y);
         }
+
+        //添加虚方法方便子类重写
+        public virtual void Update()
+        {
+            DrawSelf();
+        }
     }
 }

@@ -84,5 +84,40 @@ namespace TankWar_01
 
         }
 
+        //坦克移动在Update中实现，使坦克的移动更加流畅
+        //需要将update方法传递到每个游戏元素中并在游戏元素中调用update方法
+
+        //在Mytank中重写Update方法用于移动
+
+        public override void Update()
+        {
+            Move();
+            base.Update();
+        }
+
+        private void Move()
+        {
+            if(IsMoving == false)
+            {
+                return;
+            }
+            switch (Dir)
+            {
+                case Direction.Up:
+                    Y -= Speed;
+                    break;
+                case Direction.Down:
+                    Y += Speed;
+                    break;
+                case Direction.Left:
+                    X -= Speed;
+                    break;
+                case Direction.Right:
+                    X += Speed;
+                    break;
+            }
+        }
+
+
     }
 }

@@ -21,32 +21,51 @@ namespace TankWar_01
         private static NotMoveThing Boss;
 
         private static MyTank myTank;
-
-        //5.在创建完包含了墙元素的地图后，将该地图最终绘制出来
-        public static void DrawMap()
+        public static void Update()
         {
-            foreach(NotMoveThing nm in wallList)
+            foreach (NotMoveThing nm in wallList)
             {
                 //notmovething属于gameobject子类，gameobject中的DrawSelf()方法可以在此处使用
-                nm.DrawSelf();
-               //6.由于DrawMap()方法需要每帧实时刷新并检测，所以放在GameFramework.cs的Update方法中
+                nm.Update();
+                //6.由于DrawMap()方法需要每帧实时刷新并检测，所以放在GameFramework.cs的Update方法中
             }
 
             foreach (NotMoveThing nm in steelList)
             {
-              
-                nm.DrawSelf();
-                
+
+                nm.Update();
+
             }
             //直接调用boss元素的drawself方法绘制
-            Boss.DrawSelf();
+            Boss.Update();
+            myTank.Update();
         }
 
-        //创建方法绘制MyTank
-        public static void DrawMyTank()
-        {
-            myTank.DrawSelf();
-        }
+        //5.在创建完包含了墙元素的地图后，将该地图最终绘制出来
+        //public static void DrawMap()
+        //{
+        //    foreach(NotMoveThing nm in wallList)
+        //    {
+        //        //notmovething属于gameobject子类，gameobject中的DrawSelf()方法可以在此处使用
+        //        nm.DrawSelf();
+        //       //6.由于DrawMap()方法需要每帧实时刷新并检测，所以放在GameFramework.cs的Update方法中
+        //    }
+
+        //    foreach (NotMoveThing nm in steelList)
+        //    {
+              
+        //        nm.DrawSelf();
+                
+        //    }
+        //    //直接调用boss元素的drawself方法绘制
+        //    Boss.DrawSelf();
+        //}
+
+        ////创建方法绘制MyTank
+        //public static void DrawMyTank()
+        //{
+        //    myTank.DrawSelf();
+        //}
 
         
         //4.添加创建地图方法，并在此方法中调用创建墙方法
