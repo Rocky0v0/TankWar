@@ -19,6 +19,8 @@ namespace TankWar_01
         //构造boss，由于只有一个元素，所以不需要创建list保存
         private static NotMoveThing Boss;
 
+        private static MyTank myTank;
+
         //5.在创建完包含了墙元素的地图后，将该地图最终绘制出来
         public static void DrawMap()
         {
@@ -37,6 +39,24 @@ namespace TankWar_01
             }
             //直接调用boss元素的drawself方法
             Boss.DrawSelf();
+        }
+
+        public static void DrawMyTank()
+        {
+            myTank.DrawSelf();
+        }
+
+        //创建MyTank
+        public static void CreateMytank()
+        {
+            //初始坐标
+            int x = 5 * 30;
+            int y = 14 *30;
+
+            //在movething中添加构造方法
+            myTank = new MyTank(x, y, 2);
+
+
         }
         //4.添加创建地图方法，并在此方法中调用创建墙方法
         //6.2创建地图只需创建一次，所以在gameframework中的start方法中调用
