@@ -37,27 +37,17 @@ namespace TankWar_01
                 nm.DrawSelf();
                 
             }
-            //直接调用boss元素的drawself方法
+            //直接调用boss元素的drawself方法绘制
             Boss.DrawSelf();
         }
 
+        //创建方法绘制MyTank
         public static void DrawMyTank()
         {
             myTank.DrawSelf();
         }
 
-        //创建MyTank
-        public static void CreateMytank()
-        {
-            //初始坐标
-            int x = 5 * 30;
-            int y = 14 *30;
-
-            //在movething中添加构造方法
-            myTank = new MyTank(x, y, 2);
-
-
-        }
+        
         //4.添加创建地图方法，并在此方法中调用创建墙方法
         //6.2创建地图只需创建一次，所以在gameframework中的start方法中调用
         public static void CreateMap()
@@ -129,13 +119,26 @@ namespace TankWar_01
             
         }
 
-        //创建新方法绘制boss
+        //创建boss
         private static void CreateBoss(int x,int y, Image img)
         {
             int xPosition = x * 30;
             int yPosition = y * 30;
 
             Boss = new NotMoveThing(xPosition, yPosition,img);
+
+        }
+
+        //创建MyTank
+        public static void CreateMytank()
+        {
+            //初始坐标
+            int x = 5 * 30;
+            int y = 14 * 30;
+
+            //在movething中添加构造方法
+            myTank = new MyTank(x, y, 2);
+
 
         }
 
