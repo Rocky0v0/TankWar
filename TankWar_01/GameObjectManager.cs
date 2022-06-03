@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TankWar_01.Properties;
 
 namespace TankWar_01
@@ -140,6 +141,18 @@ namespace TankWar_01
             myTank = new MyTank(x, y, 2);
 
 
+        }
+
+
+        //将这两个事件传递给MyTank，所以要在MyTank中提供两个方法处理这两个事件
+        public static void KeyDown(KeyEventArgs args)
+        {
+            myTank.KeyDown(args);
+        }
+
+        public static void KeyUp(KeyEventArgs args)
+        {
+            myTank.KeyUp(args);
         }
 
     }

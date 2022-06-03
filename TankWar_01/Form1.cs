@@ -68,5 +68,17 @@ namespace TankWar_01
         {
             t.Abort();
         }
+
+
+        //创建监听键盘按下和抬起的方法,此处调用GameManager中的方法
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            GameObjectManager.KeyDown(e);
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            GameObjectManager.KeyUp(e);
+        }
     }
 }

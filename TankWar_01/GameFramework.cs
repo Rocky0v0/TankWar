@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TankWar_01
 {
@@ -23,5 +24,7 @@ namespace TankWar_01
             GameObjectManager.DrawMap();
             GameObjectManager.DrawMyTank();
         }
+
+       
     }
 }
