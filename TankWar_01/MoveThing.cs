@@ -17,13 +17,38 @@ namespace TankWar_01
     internal class MoveThing:GameObject
     {
         public int Speed { get; set; }
-
-        public Direction Dir { get; set; }
-
         public Bitmap BitmapUp { get; set; }
         public Bitmap BitmapDown { get; set; }
         public Bitmap BitmapRight { get; set; }
         public Bitmap BitmapLeft { get; set; }
+
+        private Direction dir;
+        public Direction Dir { get { return dir; } 
+            set {
+                dir = value;
+                Bitmap bmp = null;
+                switch (dir)
+                {
+                    case Direction.Up:
+                        bmp = BitmapUp;
+                        break;
+                    case Direction.Down:
+                        bmp = BitmapDown;
+                        break;
+                    case Direction.Left:
+                        bmp = BitmapLeft;
+                        break;
+                    case Direction.Right:
+                        bmp = BitmapRight;
+                        break;
+                }
+                Width = bmp.Width;
+                Height = bmp.Height;
+               
+            } 
+        }
+
+        
 
         protected override Image GetImage()
         {
@@ -47,10 +72,10 @@ namespace TankWar_01
             }
             bitmap.MakeTransparent(Color.Black);
             return bitmap;
+        }
 
 
            
             
-        }
     }
 }

@@ -13,6 +13,9 @@ namespace TankWar_01
         public int X { get; set; }
         public int Y { get; set; }
 
+        //添加元素高宽属性
+        public int Width { get; set; }
+        public int Height { get; set; }
        
         //2.得到image(需要使用抽象方法并在子类中重写得到各个子元素图片)
         protected abstract Image GetImage();

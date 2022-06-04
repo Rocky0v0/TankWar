@@ -23,15 +23,17 @@ namespace TankWar_01
             this.Y = y;
             this.Speed = speed;
 
-            //默认朝向：可以按照默认值赋值
-            this.Dir = Direction.Up;
-
             //坦克的四个方向图片是固定的，直接在构造方法中写
             //传递Movething中的四个方向的set属性
             BitmapDown = Resources.MyTankDown;
             BitmapUp = Resources.MyTankUp;
             BitmapLeft = Resources.MyTankLeft;
             BitmapRight = Resources.MyTankRight;
+
+            //默认朝向：可以按照默认值赋值
+            this.Dir = Direction.Up;
+
+       
 
         }
 
@@ -91,8 +93,51 @@ namespace TankWar_01
 
         public override void Update()
         {
+
+            MoveCheck(); //添加movecheck方法控制坦克不超出边界
             Move();
             base.Update();
+        }
+
+        public void MoveCheck()
+        { 
+            //检查是否超出窗体边界
+
+            if(Dir == Direction.Up)
+            {
+                if (Y - Speed < 0)
+                {
+                    IsMoving = false;
+                    return;
+                }
+            }
+            else if (Dir == Direction.Down)
+            {
+                if (Y + Speed + Height > 450)
+                {
+                    IsMoving = false;
+                    return;
+                }
+            }
+            else if (Dir == Direction.Left)
+            {
+                if (X - Speed < 0)
+                {
+                    IsMoving = false;
+                    return;
+                }
+            }
+            else if (Dir == Direction.Right)
+            {
+                if (X + Speed + Width > 450)
+                {
+                    IsMoving = false;
+                    return;
+                }
+            }
+
+
+            //碰撞检测
         }
 
         private void Move()
