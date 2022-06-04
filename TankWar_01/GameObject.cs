@@ -34,5 +34,13 @@ namespace TankWar_01
         {
             DrawSelf();
         }
+
+        //添加获取矩形方法
+        public Rectangle GetRectangle()
+        {
+            Rectangle rectangle = new Rectangle(X,Y,Width,Height);
+            return rectangle;
+        }
+
     }
 }

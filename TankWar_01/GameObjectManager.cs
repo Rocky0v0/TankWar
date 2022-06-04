@@ -41,6 +41,42 @@ namespace TankWar_01
             myTank.Update();
         }
 
+        //红砖墙碰撞
+        public static NotMoveThing IsCollidedWall(Rectangle rt)
+        {
+            foreach(NotMoveThing wall in wallList)
+            {
+                if (wall.GetRectangle().IntersectsWith(rt))
+                {
+                    return wall;
+                }
+
+            }
+                return null;
+        }
+
+
+        //钢墙碰撞
+        public static NotMoveThing IsCollidedSteel(Rectangle rt)
+        {
+            foreach (NotMoveThing wall in steelList)
+            {
+                if (wall.GetRectangle().IntersectsWith(rt))
+                {
+                    return wall;
+                }
+
+            }
+            return null;
+        }
+        
+        //Boss碰撞
+        public static bool IsCollidedBoss(Rectangle rt)
+        {
+            return Boss.GetRectangle().IntersectsWith(rt);
+            
+        }
+
         //5.在创建完包含了墙元素的地图后，将该地图最终绘制出来
         //public static void DrawMap()
         //{
@@ -53,9 +89,9 @@ namespace TankWar_01
 
         //    foreach (NotMoveThing nm in steelList)
         //    {
-              
+
         //        nm.DrawSelf();
-                
+
         //    }
         //    //直接调用boss元素的drawself方法绘制
         //    Boss.DrawSelf();
@@ -67,7 +103,7 @@ namespace TankWar_01
         //    myTank.DrawSelf();
         //}
 
-        
+
         //4.添加创建地图方法，并在此方法中调用创建墙方法
         //6.2创建地图只需创建一次，所以在gameframework中的start方法中调用
         public static void CreateMap()

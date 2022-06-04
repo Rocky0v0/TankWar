@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -137,7 +138,47 @@ namespace TankWar_01
             }
 
 
-            //碰撞检测
+            //碰撞检测(判断图片四个角的点是否与另外一个元素的四个角重合)系统提供了用于长方体碰撞检测的方法
+
+            //需要使用未来的位置进行碰撞检测，如果拿现在的位置进行检测，碰到墙后isMoving就一直为false无法移动
+            Rectangle rect = GetRectangle();
+
+            //判断将要移动的方位
+            switch (Dir)
+            {
+                case Direction.Up:
+                    rect.Y -= Speed;
+                    break;
+                case Direction.Down:
+                    rect.Y += Speed;
+                    break;
+                case Direction.Right:
+                    rect.X += Speed;
+                    break;
+                case Direction.Left:
+                    rect.X -= Speed;
+                    break;
+
+            }
+            if (GameObjectManager.IsCollidedWall(rect)!=null)
+            {
+                IsMoving=false;
+                return;
+            }
+
+            if (GameObjectManager.IsCollidedSteel(rect) != null)
+            {
+                IsMoving = false;
+                return;
+            }
+
+            if (GameObjectManager.IsCollidedBoss(rect))
+            {
+                IsMoving = false;
+                return;
+            }
+
+
         }
 
         private void Move()
