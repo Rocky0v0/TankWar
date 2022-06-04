@@ -9,15 +9,14 @@ namespace TankWar_01
 {
     enum Direction
     {
-        Up,
-        Down,
-        Left,
-        Right,
+        Up=0,
+        Down=1,
+        Left=2,
+        Right=3,
     }
     internal class MoveThing:GameObject
     {
-        //创建布尔成员判断坦克是否在移动
-        public bool IsMoving { get; set; }
+        
         public int Speed { get; set; }
         public Bitmap BitmapUp { get; set; }
         public Bitmap BitmapDown { get; set; }
@@ -76,8 +75,10 @@ namespace TankWar_01
             return bitmap;
         }
 
+        
 
-           
-            
+
+
+
     }
 }
