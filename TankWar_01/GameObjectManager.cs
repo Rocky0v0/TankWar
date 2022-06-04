@@ -21,6 +21,29 @@ namespace TankWar_01
         private static NotMoveThing Boss;
 
         private static MyTank myTank;
+
+        //创建集合管理敌人坦克
+        private static List<EnemyTank> tankList = new List<EnemyTank>();
+
+        //生成敌人代码需要持续生成
+        //创建生成速度，以帧为单位生成
+        private static int enemyBornSpeed = 60; //1秒生成一个
+        private static int enemyBornCount = 60; //计数器，计数器为60的时候生成一个，游戏开始直接生成一个所以初始值为60
+        
+        //创建数组用于存放3个生成位置 使用Point：winform中的一个类，用于保存坐标，point是一个结构体
+        private static Point[] points = new Point[3];
+        
+        //创建start方法用于在游戏开始时只调用一次*敌人出生点
+        public static void Start()
+        {
+            //生成敌人有3个位置，每个位置随机生成4种敌人中的一种
+            //1号位置
+            points[0].X = 0; points[0].Y = 0;
+            //2号位置
+            points[1].X = 7*30; points[1].Y = 0;
+            //3号位置
+            points[2].X = 14 * 30; points[2].Y = 0;
+        }
         public static void Update()
         {
             foreach (NotMoveThing nm in wallList)
@@ -39,6 +62,77 @@ namespace TankWar_01
             //直接调用boss元素的drawself方法绘制
             Boss.Update();
             myTank.Update();
+
+            //调用敌人生成方法
+            EnemyBorn();
+
+            //绘制敌人坦克
+            foreach(EnemyTank tank in tankList)
+            {
+                tank.Update();
+            }
+
+        }
+        //添加敌人生成方法
+        private static void EnemyBorn()
+        {
+            enemyBornCount++;
+            if (enemyBornCount < enemyBornSpeed)
+            {
+                return;//如果计数器小于60则没到生成敌人时间，直接返回
+            }
+            else
+            {
+                //生成敌人代码
+
+                //随机生成0-2中的数字代表敌人随机从三个刷新点的一个位置中生成
+                Random rd = new Random();
+                int index = rd.Next(0, 3);//随机生成0-3中的数字，不包含3
+                Point position = points[index];
+                //随机生成四种中的一种敌人
+                int enemyType = rd.Next(1, 5);//随机生成1-4个敌人中的一个
+                switch (enemyType)
+                {
+                    case 1:
+                        CreateEnemyTank1(position.X, position.Y);
+                        break;
+                    case 2:
+                        CreateEnemyTank2(position.X, position.Y);
+                        break;
+                    case 3:
+                        CreateEnemyTank3(position.X, position.Y);
+                        break;
+                    case 4:
+                        CreateEnemyTank4(position.X, position.Y);
+                        break;
+
+                }
+
+                //生成时计数器归零
+                enemyBornCount = 0;
+            }
+        }
+
+        //创建生成敌人坦克方法->并在EnemyTank中提供构造方法用于构造坦克
+        private static void CreateEnemyTank1(int x,int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 2, Resources.GrayDown, Resources.GrayUp, Resources.GrayRight, Resources.GrayLeft);
+            tankList.Add(tank);
+        }
+        private static void CreateEnemyTank2(int x, int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 2, Resources.GreenDown, Resources.GreenUp, Resources.GreenRight, Resources.GreenLeft);
+            tankList.Add(tank);
+        }
+        private static void CreateEnemyTank3(int x, int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 4, Resources.QuickDown, Resources.QuickUp, Resources.QuickRight, Resources.QuickLeft);
+            tankList.Add(tank);
+        }
+        private static void CreateEnemyTank4(int x, int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 1, Resources.SlowDown, Resources.SlowUp, Resources.SlowRight, Resources.SlowLeft);
+            tankList.Add(tank);
         }
 
         //红砖墙碰撞

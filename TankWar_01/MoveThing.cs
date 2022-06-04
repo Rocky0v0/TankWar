@@ -16,6 +16,8 @@ namespace TankWar_01
     }
     internal class MoveThing:GameObject
     {
+        //创建布尔成员判断坦克是否在移动
+        public bool IsMoving { get; set; }
         public int Speed { get; set; }
         public Bitmap BitmapUp { get; set; }
         public Bitmap BitmapDown { get; set; }

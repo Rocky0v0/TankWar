@@ -11,8 +11,7 @@ namespace TankWar_01
 {
     class MyTank:MoveThing
     {
-        //创建布尔成员判断坦克是否在移动
-        public bool IsMoving { get; set; }
+        
 
         //创建构造方法
         //1.传递GameObject中的参数 x y
