@@ -75,10 +75,14 @@ namespace TankWar_01
                 tank.Update();
             }
 
-            foreach(Bullet bullet in bulletList)
+            CheckAndRemoveBullet();
+
+            foreach (Bullet bullet in bulletList)
             {
                 bullet.Update();
             }
+
+            
 
         }
 
@@ -88,6 +92,25 @@ namespace TankWar_01
             Bullet bullet = new Bullet(x, y, 5, dir, tag);
             bulletList.Add(bullet);
         }
+
+        private static void CheckAndRemoveBullet()
+        {
+            List<Bullet> needToRemove = new List<Bullet>();
+            foreach(Bullet bullet in bulletList)
+            {
+                if(bullet.IsRemove == true)
+                {
+                    needToRemove.Add(bullet);
+                }
+            }
+
+            foreach(Bullet bullet in needToRemove)
+            {
+                bulletList.Remove(bullet);
+            }
+        }
+
+       
         //添加敌人生成方法
         private static void EnemyBorn()
         {
