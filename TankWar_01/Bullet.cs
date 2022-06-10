@@ -71,7 +71,7 @@ namespace TankWar_01
             }
             else if (Dir == Direction.Left)
             {
-                if (X - Speed < 0)
+                if (X +Width/2-3 < 0)
                 {
                     IsRemove |= true;
                     return;
@@ -79,7 +79,7 @@ namespace TankWar_01
             }
             else if (Dir == Direction.Right)
             {
-                if (X + Speed + Width > 450)
+                if (X +Width/2+3 > 450)
                 {
                     IsRemove |= true;
                     return;
