@@ -60,7 +60,38 @@ namespace TankWar_01
                     Dir = Direction.Left;
                     IsMoving = true;
                     break;
+                case Keys.Space:
+                    Attack();
+                    break;
             }
+        }
+        private void Attack() {
+            //发射子弹
+            //在gameobjectmanager中创建子弹
+            //调用创建子弹
+            int x = this.X;
+            int y = this.Y;
+            //通过方向计算子弹位置
+            switch (Dir)
+            {
+                case Direction.Up:
+                    x = x + Width / 2;
+                    break;
+                case Direction.Down:
+                    x = x + Width / 2;
+                    y += Height;
+                    break;
+                case Direction.Left:
+                    y = y + Height / 2;
+                    break;
+                case Direction.Right:
+                    x += Width;
+                    y = y + Height / 2;
+                    break;
+
+
+            }
+            GameObjectManager.CreateBullet(x, y, Tag.MyTank, Dir);
         }
 
         public void KeyUp(KeyEventArgs args)

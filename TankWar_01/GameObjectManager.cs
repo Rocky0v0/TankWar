@@ -25,6 +25,9 @@ namespace TankWar_01
         //创建集合管理敌人坦克
         private static List<EnemyTank> tankList = new List<EnemyTank>();
 
+        //创建集合管理子弹
+        private static List<Bullet> bulletList = new List<Bullet>();
+
         //生成敌人代码需要持续生成
         //创建生成速度，以帧为单位生成
         private static int enemyBornSpeed = 60; //1秒生成一个
@@ -72,6 +75,18 @@ namespace TankWar_01
                 tank.Update();
             }
 
+            foreach(Bullet bullet in bulletList)
+            {
+                bullet.Update();
+            }
+
+        }
+
+        //子弹生成
+        public static void CreateBullet(int x,int y,Tag tag,Direction dir)
+        {
+            Bullet bullet = new Bullet(x, y, 5, dir, tag);
+            bulletList.Add(bullet);
         }
         //添加敌人生成方法
         private static void EnemyBorn()

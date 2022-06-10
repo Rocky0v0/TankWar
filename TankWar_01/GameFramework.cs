@@ -22,8 +22,7 @@ namespace TankWar_01
 
         public static void Update()
         {
-            // GameObjectManager.DrawMap();
-            // GameObjectManager.DrawMyTank();
+           
             GameObjectManager.Update();
         }
 

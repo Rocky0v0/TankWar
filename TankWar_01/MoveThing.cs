@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TankWar_01
 {
     enum Direction
-    {
+    {   
         Up=0,
         Down=1,
         Left=2,

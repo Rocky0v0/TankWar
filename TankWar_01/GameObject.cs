@@ -20,7 +20,7 @@ namespace TankWar_01
         //2.得到image(需要使用抽象方法并在子类中重写得到各个子元素图片)
         protected abstract Image GetImage();
 
-        public void DrawSelf()
+        public virtual void DrawSelf()
         {
       
             Graphics g = GameFramework.g;
