@@ -110,6 +110,20 @@ namespace TankWar_01
             }
         }
 
+        //墙销毁方法
+
+        public static void RemoveWall(NotMoveThing wall)
+        {
+            wallList.Remove(wall);
+        }
+
+        //坦克销毁方法
+        public static void RemoveTank(EnemyTank tank)
+        {
+            tankList.Remove(tank);
+        }
+
+
        
         //添加敌人生成方法
         private static void EnemyBorn()
@@ -208,6 +222,20 @@ namespace TankWar_01
             return Boss.GetRectangle().IntersectsWith(rt);
             
         }
+
+        //Mytank子弹碰撞敌人坦克
+         public static EnemyTank IsCollidedEnemyTank(Rectangle rt)
+        {
+            foreach(EnemyTank tank in tankList)
+            {
+                if (tank.GetRectangle().IntersectsWith(rt))
+                {
+                    return tank;
+                }
+            }
+            return null;
+        }
+
 
         //5.在创建完包含了墙元素的地图后，将该地图最终绘制出来
         //public static void DrawMap()

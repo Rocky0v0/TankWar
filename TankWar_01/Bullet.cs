@@ -92,39 +92,48 @@ namespace TankWar_01
             //需要使用未来的位置进行碰撞检测，如果拿现在的位置进行检测，碰到墙后isMoving就一直为false无法移动
             Rectangle rect = GetRectangle();
 
-            //判断将要移动的方位
-            switch (Dir)
-            {
-                case Direction.Up:
-                    rect.Y -= Speed;
-                    break;
-                case Direction.Down:
-                    rect.Y += Speed;
-                    break;
-                case Direction.Right:
-                    rect.X += Speed;
-                    break;
-                case Direction.Left:
-                    rect.X -= Speed;
-                    break;
+            rect.X = X + Width / 2 - 3;
+            rect.Y = Y + Height / 2 - 3;
+            rect.Height = 3;
+            rect.Width = 3;
 
-            }
-            if (GameObjectManager.IsCollidedWall(rect) != null)
+            //检测子弹与墙，钢墙，坦克（敌人，主角）和Boss的碰撞
+
+            //墙
+            NotMoveThing wall = null;
+            if ((wall=GameObjectManager.IsCollidedWall(rect)) != null)
             {
-                ChangeDirection();
+                IsRemove = true;//子弹自身销毁
+                //墙销毁 方法在GameObjectManager中建立
+                GameObjectManager.RemoveWall(wall);
                 return;
             }
-
+            //钢墙
             if (GameObjectManager.IsCollidedSteel(rect) != null)
             {
-                ChangeDirection();
+                IsRemove = true;
                 return;
             }
 
-            if (GameObjectManager.IsCollidedBoss(rect))
+           // if (GameObjectManager.IsCollidedBoss(rect))
+           // {
+             //  ChangeDirection();
+             //  return;
+           // }
+
+            if(Tag == Tag.MyTank)
             {
-                ChangeDirection();
-                return;
+                //MyTank 只需要判断是否与敌人发生碰撞 在GameObjectManager中添加方法
+                EnemyTank tank = null;
+                if ((tank = GameObjectManager.IsCollidedEnemyTank(rect)) != null)
+                {
+                    IsRemove = true;//自身销毁
+                    //坦克销毁方法在GameObjectManager中新建
+                    GameObjectManager.RemoveTank(tank);
+                    return;
+
+
+                }
             }
         }
         private void Move()
