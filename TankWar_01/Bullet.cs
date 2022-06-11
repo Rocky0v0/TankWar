@@ -108,6 +108,7 @@ namespace TankWar_01
                 //墙销毁 方法在GameObjectManager中建立
                 GameObjectManager.RemoveWall(wall);
                 GameObjectManager.CreateExplosion(xExp, yExp);
+                SoundManager.PlayBlast();
                 return;
             }
             //钢墙
@@ -134,6 +135,7 @@ namespace TankWar_01
                     GameObjectManager.CreateExplosion(xExp, yExp);
                     //坦克销毁方法在GameObjectManager中新建
                     GameObjectManager.RemoveTank(tank);
+                    SoundManager.PlayHit();
                     return;
 
 
@@ -145,6 +147,7 @@ namespace TankWar_01
                 if((mytank = GameObjectManager.IsCollidedMyTank(rect)) != null)
                 {
                     IsRemove=true;
+                    SoundManager.PlayBlast();
                     GameObjectManager.CreateExplosion(xExp, yExp);
                     mytank.TakeDamage();
                     return;

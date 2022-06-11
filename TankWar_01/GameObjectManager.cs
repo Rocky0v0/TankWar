@@ -167,6 +167,8 @@ namespace TankWar_01
             }
             else
             {
+                //添加敌人出生音效
+                SoundManager.PlayAdd();
                 //生成敌人代码
 
                 //随机生成0-2中的数字代表敌人随机从三个刷新点的一个位置中生成

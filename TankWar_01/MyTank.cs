@@ -74,6 +74,8 @@ namespace TankWar_01
         }
         private void Attack() {
             //发射子弹
+            //发射音效
+            SoundManager.PlayFire();
             //在gameobjectmanager中创建子弹
             //调用创建子弹
             int x = this.X;

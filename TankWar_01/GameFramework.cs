@@ -20,9 +20,11 @@ namespace TankWar_01
 
         public static void Start()
         {
+            SoundManager.InitSound();
             GameObjectManager.Start();
             GameObjectManager.CreateMap();
             GameObjectManager.CreateMytank();
+            SoundManager.PlayStart();
             
         }
 
