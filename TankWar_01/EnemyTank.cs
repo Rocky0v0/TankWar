@@ -9,6 +9,8 @@ namespace TankWar_01
 {
     class EnemyTank:MoveThing
     {
+        public int AttackSpeed { get; set; }
+        private int attackCount = 0;
         Random r = new Random();
 
         public EnemyTank(int x, int y, int speed,Bitmap bmpDown,Bitmap bmpUp,Bitmap bmpRight,Bitmap bmpLeft)
@@ -27,6 +29,7 @@ namespace TankWar_01
 
             //默认朝向：可以按照默认值赋值
             this.Dir = Direction.Down;
+            AttackSpeed = 60;
         }
 
         public override void Update()
@@ -34,6 +37,7 @@ namespace TankWar_01
 
             MoveCheck(); //添加movecheck方法控制坦克不超出边界
             Move();
+            AttackCheck();
             base.Update();
         }
 
@@ -158,6 +162,49 @@ namespace TankWar_01
                     X += Speed;
                     break;
             }
+        }
+        private void AttackCheck()
+        {
+            attackCount++;
+            if (attackCount < AttackSpeed)
+            {
+                return;
+            }
+            else
+            {
+                Attack();
+                attackCount = 0;
+            }
+        }
+
+        private void Attack()
+        {
+            //发射子弹
+            //在gameobjectmanager中创建子弹
+            //调用创建子弹
+            int x = this.X;
+            int y = this.Y;
+            //通过方向计算子弹位置
+            switch (Dir)
+            {
+                case Direction.Up:
+                    x = x + Width / 2;
+                    break;
+                case Direction.Down:
+                    x = x + Width / 2;
+                    y += Height;
+                    break;
+                case Direction.Left:
+                    y = y + Height / 2;
+                    break;
+                case Direction.Right:
+                    x += Width;
+                    y = y + Height / 2;
+                    break;
+
+
+            }
+            GameObjectManager.CreateBullet(x, y, Tag.EnemyTank, Dir);
         }
 
     }
