@@ -98,7 +98,8 @@ namespace TankWar_01
             rect.Width = 3;
 
             //检测子弹与墙，钢墙，坦克（敌人，主角）和Boss的碰撞
-
+            int xExp = this.X+Width/2;
+            int yExp = this.Y+Height/2;
             //墙
             NotMoveThing wall = null;
             if ((wall=GameObjectManager.IsCollidedWall(rect)) != null)
@@ -106,6 +107,7 @@ namespace TankWar_01
                 IsRemove = true;//子弹自身销毁
                 //墙销毁 方法在GameObjectManager中建立
                 GameObjectManager.RemoveWall(wall);
+                GameObjectManager.CreateExplosion(xExp, yExp);
                 return;
             }
             //钢墙

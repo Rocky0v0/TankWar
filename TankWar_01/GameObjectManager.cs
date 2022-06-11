@@ -28,6 +28,9 @@ namespace TankWar_01
         //创建集合管理子弹
         private static List<Bullet> bulletList = new List<Bullet>();
 
+        //创建集合管理爆炸效果
+        private static List<Explosion> expList  = new List<Explosion>();
+
         //生成敌人代码需要持续生成
         //创建生成速度，以帧为单位生成
         private static int enemyBornSpeed = 60; //1秒生成一个
@@ -81,7 +84,11 @@ namespace TankWar_01
             {
                 bullet.Update();
             }
-
+            //添加绘制方法
+            foreach(Explosion exp in expList)
+            {
+                exp.Update();
+            }
             
 
         }
@@ -121,6 +128,12 @@ namespace TankWar_01
         public static void RemoveTank(EnemyTank tank)
         {
             tankList.Remove(tank);
+        }
+
+        public static void CreateExplosion(int x,int y)
+        {
+            Explosion exp = new Explosion(x, y);
+            expList.Add(exp);
         }
 
 
