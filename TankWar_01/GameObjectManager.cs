@@ -79,6 +79,7 @@ namespace TankWar_01
             }
 
             CheckAndRemoveBullet();
+            CheckAndRemovExplosion();
 
             foreach (Bullet bullet in bulletList)
             {
@@ -100,6 +101,7 @@ namespace TankWar_01
             bulletList.Add(bullet);
         }
 
+        //检测子弹移除
         private static void CheckAndRemoveBullet()
         {
             List<Bullet> needToRemove = new List<Bullet>();
@@ -117,6 +119,23 @@ namespace TankWar_01
             }
         }
 
+        //检测爆炸效果移除
+        private static void CheckAndRemovExplosion()
+        {
+            List<Explosion> needToRemove = new List<Explosion>();
+            foreach (Explosion exp in expList)
+            {
+                if (exp.IsNeedDestroy ==true)
+                {
+                    needToRemove.Add(exp);
+                }
+            }
+
+            foreach (Explosion exp in needToRemove)
+            {
+                expList.Remove(exp);
+            }
+        }
         //墙销毁方法
 
         public static void RemoveWall(NotMoveThing wall)

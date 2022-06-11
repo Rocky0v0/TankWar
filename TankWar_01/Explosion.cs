@@ -10,10 +10,13 @@ namespace TankWar_01
 {
     class Explosion : GameObject
     {
+        //添加标志位用于爆炸效果销毁
+        public bool IsNeedDestroy { get; set; }
+
         //默认播放速度
-        private int playSpeed = 2;
+        private int playSpeed = 1;
         //播放速度计数器
-        private int playCount = -1;
+        private int playCount = 0;
         //索引值：用于美实现每张图片播放两帧
         private int index = 0;
 
@@ -34,6 +37,7 @@ namespace TankWar_01
             //爆炸位置校准
             this.X = x - bmpArray[0].Width / 2;
             this.Y = y - bmpArray[0].Height / 2;
+            IsNeedDestroy = false;
         }
         protected override Image GetImage()
         {
@@ -47,6 +51,10 @@ namespace TankWar_01
             playCount++;
             //此公式用于实现每一张图片播放两帧
             index = (playCount - 1) / playSpeed;
+            if (index > 4)
+            {
+                IsNeedDestroy = true;
+            }
             base.Update();
         }
             

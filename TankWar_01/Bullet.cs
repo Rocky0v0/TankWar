@@ -114,6 +114,7 @@ namespace TankWar_01
             if (GameObjectManager.IsCollidedSteel(rect) != null)
             {
                 IsRemove = true;
+                GameObjectManager.CreateExplosion(xExp, yExp);
                 return;
             }
 
@@ -130,6 +131,7 @@ namespace TankWar_01
                 if ((tank = GameObjectManager.IsCollidedEnemyTank(rect)) != null)
                 {
                     IsRemove = true;//自身销毁
+                    GameObjectManager.CreateExplosion(xExp, yExp);
                     //坦克销毁方法在GameObjectManager中新建
                     GameObjectManager.RemoveTank(tank);
                     return;
