@@ -118,13 +118,13 @@ namespace TankWar_01
                 return;
             }
 
-           // if (GameObjectManager.IsCollidedBoss(rect))
-           // {
-             //  ChangeDirection();
-             //  return;
-           // }
+            if (GameObjectManager.IsCollidedBoss(rect))
+            {
+                GameFramework.ChangeToGameOver();
+                return;
+            }
 
-            if(Tag == Tag.MyTank)
+            if (Tag == Tag.MyTank)
             {
                 //MyTank 只需要判断是否与敌人发生碰撞 在GameObjectManager中添加方法
                 EnemyTank tank = null;
