@@ -268,6 +268,13 @@ namespace TankWar_01
             return null;
         }
 
+        //EnemyTank子弹和Mytank碰撞
+        public static MyTank IsCollidedMyTank(Rectangle rt)
+        {
+            if( myTank.GetRectangle().IntersectsWith(rt))return myTank;
+            else return null;
+        }
+
 
         //5.在创建完包含了墙元素的地图后，将该地图最终绘制出来
         //public static void DrawMap()

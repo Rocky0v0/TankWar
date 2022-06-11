@@ -139,6 +139,17 @@ namespace TankWar_01
 
                 }
             }
+            else if(Tag ==Tag.EnemyTank)
+            {
+                MyTank mytank = null;
+                if((mytank = GameObjectManager.IsCollidedMyTank(rect)) != null)
+                {
+                    IsRemove=true;
+                    GameObjectManager.CreateExplosion(xExp, yExp);
+                    mytank.TakeDamage();
+                    return;
+                }
+            }
         }
         private void Move()
         {

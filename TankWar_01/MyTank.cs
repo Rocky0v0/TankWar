@@ -13,6 +13,10 @@ namespace TankWar_01
     {
         //创建布尔成员判断坦克是否在移动
         public bool IsMoving { get; set; }
+        public int HP { get; set; }
+        //出生点
+        private int originalX;
+        private int originalY;
 
         //创建构造方法
         //1.传递GameObject中的参数 x y
@@ -20,6 +24,8 @@ namespace TankWar_01
         public MyTank(int x,int y,int speed)
         {
             IsMoving = false;
+            originalX = x;
+            originalY = y;
             this.X = x;
             this.Y = y;
             this.Speed = speed;
@@ -33,6 +39,7 @@ namespace TankWar_01
 
             //默认朝向：可以按照默认值赋值
             this.Dir = Direction.Up;
+            HP = 4;
 
        
 
@@ -114,6 +121,18 @@ namespace TankWar_01
                 
                     IsMoving = false;
                     break;
+            }
+
+        }
+        //受到伤害减少生命代码
+        public void TakeDamage()
+        {
+            HP--;
+            if(HP <= 0)
+            {
+                X = originalX;
+                Y = originalY;
+                HP = 4;
             }
 
         }
