@@ -9,6 +9,8 @@ namespace TankWar_01
 {
     class EnemyTank:MoveThing
     {
+        public int ChangeDirSpeed { get; set; }
+        private int ChangeDirCount { get; set; }
         public int AttackSpeed { get; set; }
         private int attackCount = 0;
         Random r = new Random();
@@ -30,6 +32,7 @@ namespace TankWar_01
             //默认朝向：可以按照默认值赋值
             this.Dir = Direction.Down;
             AttackSpeed = 60;
+            ChangeDirSpeed = 70;
         }
 
         public override void Update()
@@ -38,6 +41,7 @@ namespace TankWar_01
             MoveCheck(); //添加movecheck方法控制坦克不超出边界
             Move();
             AttackCheck();
+            AutoChangeDirection();
             base.Update();
         }
 
@@ -120,6 +124,19 @@ namespace TankWar_01
             }
 
 
+        }
+        private void AutoChangeDirection()
+        {
+            ChangeDirCount++;
+            if (ChangeDirCount < ChangeDirSpeed)
+            {
+                return;
+            }
+            else
+            {
+                ChangeDirection();
+                ChangeDirCount = 0;
+            }
         }
         //创建随机改变敌人朝向方法
         private void ChangeDirection()
